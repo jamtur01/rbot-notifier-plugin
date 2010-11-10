@@ -44,9 +44,10 @@ class NotifierPlugin < Plugin
           im = Jabber::Simple.new(user, password)
           im.add(target)
 
-          debug "We're going to tell #{target} the message: #{m.message}"
+          debug "We're going to tell #{target} the message: #{m.message} from #{m.sourcenick}"
 
-          im.deliver(target, m.message)
+          msg = m.sourcenick + " sent " + m.message
+          im.deliver(target, msg)
 
         end
 end
